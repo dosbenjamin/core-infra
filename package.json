@@ -1,5 +1,5 @@
 {
-  "name": "launchpad",
+  "name": "deployment-platform",
   "module": "index.ts",
   "type": "module",
   "devDependencies": {

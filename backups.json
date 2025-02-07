@@ -4,7 +4,7 @@
       "name": "postgres",
       "username": "postgres",
       "password": "postgres",
-      "host": "backup-database",
+      "host": "backups-database",
       "port": 5432
     },
     "options": {

@@ -1,10 +1,14 @@
 {
   "name": "deployment-platform",
   "dockerComposeFile": "compose.yaml",
-  "service": "backup",
+  "service": "backups",
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopCompose",
   "onCreateCommand": "apk add git openssh curl postgresql-client",
+  "postCreateCommand": {
+    "storage": "curl -X PUT http://backups-storage:4566/backups",
+    "node": "bun install"
+  },
   "customizations": {
     "vscode": {
       "extensions": ["oven.bun-vscode"]

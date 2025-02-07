@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "launchpad",
+      "name": "deployment-platform",
       "devDependencies": {
         "@types/bun": "latest",
       },
