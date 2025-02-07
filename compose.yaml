@@ -1,0 +1,28 @@
+name: 'deployment-platform'
+
+networks:
+  deployment-platform:
+    name: deployment-platform
+
+services:
+  cloudflared:
+    image: cloudflare/cloudflared
+    restart: always
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+    networks:
+      - deployment-platform
+    command: tunnel --no-autoupdate run
+  backups:
+    build: .
+    restart: always
+    environment:
+      BACKUPS_CRON_PATTERN: ${BACKUPS_CRON_PATTERN}
+      S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID}
+      S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY}
+      S3_BUCKET: ${S3_BUCKET}
+      S3_ENDPOINT: ${S3_ENDPOINT}
+    volumes:
+      - ${BACKUPS_CONFIG_FILE}:/app/backups.json
+    networks:
+      - deployment-platform

@@ -7,7 +7,7 @@
   "onCreateCommand": "apk add git openssh curl postgresql-client",
   "postCreateCommand": {
     "storage": "curl -X PUT http://backups-storage:4566/backups",
-    "node": "bun install"
+    "bun": "bun install"
   },
   "customizations": {
     "vscode": {
