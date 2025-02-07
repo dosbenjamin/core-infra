@@ -1,0 +1,13 @@
+{
+  "name": "deployment-platform",
+  "dockerComposeFile": "compose.yaml",
+  "service": "backup",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "onCreateCommand": "apk add git openssh curl postgresql-client",
+  "customizations": {
+    "vscode": {
+      "extensions": ["oven.bun-vscode"]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+name: deployment-platform
+
+volumes:
+  backup-database-data:
+  backup-storage-data:
+
+services:
+  backup-database:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - backup-database-data:/var/lib/postgresql/data
+  backup-storage:
+    image: localstack/localstack
+    environment:
+      SERVICES: s3
+      PERSISTENCE: 1
+    volumes:
+      - backup-storage-data:/var/lib/localstack
+  backup:
+    image: oven/bun:1.2-alpine
+    command: sleep infinity
+    depends_on:
+      - backup-database
+      - backup-storage
+    volumes:
+      - ../.:/workspace:cached
