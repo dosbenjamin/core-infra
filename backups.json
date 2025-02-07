@@ -1,0 +1,14 @@
+[
+  {
+    "database": {
+      "name": "postgres",
+      "username": "postgres",
+      "password": "postgres",
+      "host": "backup-database",
+      "port": 5432
+    },
+    "options": {
+      "prefix": "local"
+    }
+  }
+]
