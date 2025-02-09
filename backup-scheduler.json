@@ -4,11 +4,11 @@
       "name": "postgres",
       "username": "postgres",
       "password": "postgres",
-      "host": "backups-database",
+      "host": "backup-scheduler-database",
       "port": 5432
     },
     "options": {
-      "prefix": "local"
+      "prefix": "dev"
     }
   }
 ]

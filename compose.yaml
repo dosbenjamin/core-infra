@@ -1,28 +1,30 @@
-name: 'deployment-platform'
-
 networks:
-  deployment-platform:
-    name: deployment-platform
+  cloudflared-net:
+    name: cloudflared-net
+  backup-scheduler-net:
+    name: backup-scheduler-net
 
 services:
   cloudflared:
+    container_name: cloudflared
     image: cloudflare/cloudflared
     restart: always
     environment:
       TUNNEL_TOKEN: ${TUNNEL_TOKEN}
     networks:
-      - deployment-platform
+      - cloudflared-net
     command: tunnel --no-autoupdate run
-  backups:
+  backup-scheduler:
+    container_name: backup-scheduler
     build: .
     restart: always
     environment:
-      BACKUPS_CRON_PATTERN: ${BACKUPS_CRON_PATTERN}
+      BACKUP_SCHEDULER_CRON_PATTERN: ${BACKUP_SCHEDULER_CRON_PATTERN}
       S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID}
       S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY}
       S3_BUCKET: ${S3_BUCKET}
       S3_ENDPOINT: ${S3_ENDPOINT}
     volumes:
-      - ${BACKUPS_CONFIG_FILE}:/app/backups.json
+      - ${BACKUP_SCHEDULER_CONFIG_FILE}:/app/backup-scheduler.json
     networks:
-      - deployment-platform
+      - backup-scheduler-net

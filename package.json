@@ -1,5 +1,5 @@
 {
-  "name": "deployment-platform",
+  "name": "core-infra",
   "module": "index.ts",
   "type": "module",
   "scripts": {

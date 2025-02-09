@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "deployment-platform",
+      "name": "core-infra",
       "dependencies": {
         "croner": "^9.0.0",
       },
