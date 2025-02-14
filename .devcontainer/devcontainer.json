@@ -4,8 +4,11 @@
   "service": "workspace",
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopCompose",
-  "onCreateCommand": "apk add git openssh postgresql-client",
-  "postCreateCommand": "bun install",
+  "onCreateCommand": {
+    "apk": "apk add git openssh postgresql-client",
+    "bun": "bun install",
+    "copy": "cp backup-scheduler.example.json backup-scheduler.json"
+  },
   "customizations": {
     "vscode": {
       "extensions": ["oven.bun-vscode"]
