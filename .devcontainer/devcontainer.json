@@ -6,8 +6,7 @@
   "shutdownAction": "stopCompose",
   "onCreateCommand": {
     "apk": "apk add git openssh postgresql-client",
-    "bun": "bun install",
-    "copy": "cp backup-scheduler.example.json backup-scheduler.json"
+    "bun": "bun install"
   },
   "customizations": {
     "vscode": {

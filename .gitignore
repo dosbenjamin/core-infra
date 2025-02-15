@@ -175,7 +175,3 @@ dist
 # Finder (MacOS) folder config
 
 .DS_Store
-
-# Backup scheduler file
-
-backup-scheduler.json

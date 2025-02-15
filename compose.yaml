@@ -25,6 +25,6 @@ services:
       S3_BUCKET: ${S3_BUCKET}
       S3_ENDPOINT: ${S3_ENDPOINT}
     volumes:
-      - ${BACKUP_SCHEDULER_CONFIG_FILE}:/app/backup-scheduler.json
+      - ${BACKUP_SCHEDULER_CONFIG_DIR}:/app/config
     networks:
       - backup-scheduler-net

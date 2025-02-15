@@ -13,9 +13,8 @@ type Backup = {
   },
 }
 
-const backups: Backup[] = await Bun.file('backup-scheduler.json').json();
-
 new Cron(Bun.env.BACKUP_SCHEDULER_CRON_PATTERN ?? '@daily', async () => {
+  const backups: Backup[] = await Bun.file(`config/backups.json`).json();
   const date = new Date().toISOString();
 
   for (const { database, options } of backups) {

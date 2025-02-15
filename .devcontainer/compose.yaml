@@ -5,8 +5,8 @@ networks:
     name: ${COMPOSE_PROJECT_NAME}-net
 
 services:
-  backup-scheduler-database:
-    container_name: ${COMPOSE_PROJECT_NAME}-backup-scheduler-database
+  backup-scheduler-db:
+    container_name: ${COMPOSE_PROJECT_NAME}-backup-scheduler-db
     image: postgres:16-alpine
     environment:
       POSTGRES_DB: postgres
@@ -17,6 +17,6 @@ services:
     image: oven/bun:1.2-alpine
     command: sleep infinity
     depends_on:
-      - backup-scheduler-database
+      - backup-scheduler-db
     volumes:
       - ../.:/workspace:cached
