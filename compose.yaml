@@ -14,6 +14,7 @@ services:
     networks:
       - cloudflared-net
     command: tunnel --no-autoupdate run
+
   backup-scheduler:
     container_name: backup-scheduler
     build: .
@@ -28,3 +29,14 @@ services:
       - ${BACKUP_SCHEDULER_CONFIG_DIR}:/app/config
     networks:
       - backup-scheduler-net
+
+  beszel-agent:
+    container_name: beszel-agent
+    image: henrygd/beszel-agent
+    restart: always
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      KEY: ${BESZEL_KEY}
+      PORT: ${BESZEL_PORT}

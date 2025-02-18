@@ -9,9 +9,10 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}-backup-scheduler-db
     image: postgres:16-alpine
     environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: backup-scheduler
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+
   workspace:
     container_name: ${COMPOSE_PROJECT_NAME}-workspace
     image: oven/bun:1.2-alpine
