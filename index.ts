@@ -19,7 +19,7 @@ new Cron(Bun.env.BACKUP_SCHEDULER_CRON_PATTERN ?? '@daily', async () => {
 
   for (const { database, options } of backups) {
     try {
-      const { stdout } = await Bun.$`pg_dump -d postgres://${database.username}:${database.password}@${database.host}:${database.port}/${database.name} | gzip`;
+      const { stdout } = await Bun.$`pg_dump -O -d postgres://${database.username}:${database.password}@${database.host}:${database.port}/${database.name} | gzip`;
       const file = Bun.s3.file(`${options.prefix}/${date}.sql.gz`);
       await Bun.write(file, stdout);
       console.info(`Successfully backup '${options.prefix}'`);
